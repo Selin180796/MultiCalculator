@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 This is a Kotlin Multiplatform project targeting Android, iOS.
 
 * `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
@@ -19,3 +20,6 @@ Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-mu
 =======
 # MultiCalculator
 >>>>>>> a7e4950613cce5534f66c2b366c5c3b36b10af53
+=======
+
+>>>>>>> origin/main
