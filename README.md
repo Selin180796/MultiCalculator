@@ -1,25 +1,37 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-This is a Kotlin Multiplatform project targeting Android, iOS.
-
-* `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - `commonMain` is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    `iosMain` would be the right folder for such calls.
-
-* `/iosApp` contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform, 
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
-
-* `/shared` is for the code that will be shared between all targets in the project.
-  The most important subfolder is `commonMain`. If preferred, you can add code to the platform-specific folders here too.
-
-
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
-=======
 # MultiCalculator
->>>>>>> a7e4950613cce5534f66c2b366c5c3b36b10af53
-=======
 
->>>>>>> origin/main
+## Overview
+This is a Kotlin Multiplatform project targeting Android and iOS, implementing a simple calculator.
+
+## Project Structure
+- `/composeApp`: Shared code for Compose Multiplatform applications.
+  - `commonMain`: Code common for all platforms.
+  - `androidMain`, `iosMain`: Platform-specific code.
+- `/iosApp`: iOS application entry point and SwiftUI code.
+- `/shared`: Code shared between all targets.
+
+## Features
+- Basic arithmetic operations: addition, subtraction, multiplication, division.
+- Cross-platform compatibility.
+
+## Setup Instructions
+### Prerequisites
+- Kotlin 1.5+
+- Android Studio
+- Xcode for iOS development
+
+### Building and Running
+#### Android
+1. Open the project in Android Studio.
+2. Build and run the application on an Android emulator or device.
+
+#### iOS
+1. Open the `iosApp` project in Xcode.
+2. Build and run the application on an iPhone simulator or device.
+
+## Contributors
+- [Selin180796](https://github.com/Selin180796)
+- [Selinchristian](https://github.com/Selinchristian)
+
+## License
+[MIT](LICENSE)
