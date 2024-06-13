@@ -1,5 +1,6 @@
 package org.example.multicalculator
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -30,6 +31,7 @@ fun AppAndroidPreview() {
     CalculatorContent()
 }
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun CalculatorContent() {
     val displayState = remember { mutableStateOf("0") }
