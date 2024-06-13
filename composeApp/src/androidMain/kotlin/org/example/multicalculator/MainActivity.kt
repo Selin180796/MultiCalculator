@@ -189,4 +189,35 @@ fun CalcEqualsButton(displayState: MutableState<String>) {
     }
 }
 
-@
+@Composable
+fun CalcClearButton(displayState: MutableState<String>) {
+    Button(
+        onClick = { displayState.value = "0" },
+        modifier = Modifier
+            .padding(4.dp)
+            .width(80.dp)
+            .height(80.dp)
+            .background(color = Color.LightGray),
+        colors = ButtonDefaults.buttonColors(
+            backgroundColor = Color.Blue,
+            contentColor = Color.White
+        )
+    ) {
+        Text(text = "C", style = MaterialTheme.typography.body1)
+    }
+}
+
+fun evaluateExpression(expression: String): Int {
+    val parts = expression.split(" ")
+    val left = parts[0].toInt()
+    val right = parts[2].toInt()
+    val operator = parts[1]
+
+    return when (operator) {
+        "+" -> left + right
+        "-" -> left - right
+        "*" -> left * right
+        "/" -> left / right
+        else -> throw IllegalArgumentException("Unknown operator")
+    }
+}
