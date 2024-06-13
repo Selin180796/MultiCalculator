@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -42,7 +43,24 @@ fun CalculatorContent() {
         ) {
             CalcDisplay(displayState)
             Spacer(modifier = Modifier.height(16.dp))
-            CalcNumericButton(1, displayState)
+            Row(
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                CalcNumericButton(1, displayState)
+                CalcNumericButton(2, displayState)
+                CalcNumericButton(3, displayState)
+            }
+            Spacer(modifier = Modifier.height(16.dp))
+            Row(
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                CalcOperationButton("+", displayState)
+                CalcOperationButton("-", displayState)
+                CalcOperationButton("*", displayState)
+                CalcOperationButton("/", displayState)
+            }
         }
     }
 }
@@ -64,5 +82,15 @@ fun CalcNumericButton(number: Int, displayState: MutableState<String>) {
         modifier = Modifier.padding(4.dp),
     ) {
         Text(text = number.toString())
+    }
+}
+
+@Composable
+fun CalcOperationButton(operation: String, displayState: MutableState<String>) {
+    Button(
+        onClick = { displayState.value += " $operation " },
+        modifier = Modifier.padding(4.dp),
+    ) {
+        Text(text = operation)
     }
 }
