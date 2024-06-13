@@ -23,3 +23,22 @@ class MainActivity : ComponentActivity() {
 fun AppAndroidPreview() {
     CalculatorContent()
 }
+
+@Composable
+fun CalculatorContent() {
+    val displayState = remember { mutableStateOf("0") }
+
+    Surface(color = MaterialTheme.colors.background) {
+        CalcDisplay(displayState)
+    }
+}
+
+@Composable
+fun CalcDisplay(displayState: MutableState<String>) {
+    Text(
+        text = displayState.value,
+        style = MaterialTheme.typography.h4,
+        modifier = Modifier.padding(16.dp),
+        color = Color.Black
+    )
+}
