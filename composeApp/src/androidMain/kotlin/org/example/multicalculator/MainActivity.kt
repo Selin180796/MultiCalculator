@@ -61,6 +61,14 @@ fun CalculatorContent() {
                 CalcOperationButton("*", displayState)
                 CalcOperationButton("/", displayState)
             }
+            Spacer(modifier = Modifier.height(16.dp))
+            Row(
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                CalcEqualsButton(displayState)
+                CalcClearButton(displayState)
+            }
         }
     }
 }
@@ -78,7 +86,7 @@ fun CalcDisplay(displayState: MutableState<String>) {
 @Composable
 fun CalcNumericButton(number: Int, displayState: MutableState<String>) {
     Button(
-        onClick = { displayState.value = number.toString() },
+        onClick = { displayState.value = if (displayState.value == "0") "$number" else "${displayState.value}$number" },
         modifier = Modifier.padding(4.dp),
     ) {
         Text(text = number.toString())
@@ -92,5 +100,47 @@ fun CalcOperationButton(operation: String, displayState: MutableState<String>) {
         modifier = Modifier.padding(4.dp),
     ) {
         Text(text = operation)
+    }
+}
+
+@Composable
+fun CalcEqualsButton(displayState: MutableState<String>) {
+    Button(
+        onClick = {
+            try {
+                val result = evaluateExpression(displayState.value)
+                displayState.value = result.toString()
+            } catch (e: ArithmeticException) {
+                displayState.value = "Error"
+            }
+        },
+        modifier = Modifier.padding(4.dp),
+    ) {
+        Text(text = "=")
+    }
+}
+
+@Composable
+fun CalcClearButton(displayState: MutableState<String>) {
+    Button(
+        onClick = { displayState.value = "0" },
+        modifier = Modifier.padding(4.dp),
+    ) {
+        Text(text = "C")
+    }
+}
+
+fun evaluateExpression(expression: String): Int {
+    val parts = expression.split(" ")
+    val left = parts[0].toInt()
+    val right = parts[2].toInt()
+    val operator = parts[1]
+
+    return when (operator) {
+        "+" -> left + right
+        "-" -> left - right
+        "*" -> left * right
+        "/" -> left / right
+        else -> throw IllegalArgumentException("Unknown operator")
     }
 }
