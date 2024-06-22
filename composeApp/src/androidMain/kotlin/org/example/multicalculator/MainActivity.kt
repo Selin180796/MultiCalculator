@@ -26,6 +26,62 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun CalcView() {
+    val displayText = remember { mutableStateOf("0") }
+
+    var leftNumber by rememberSaveable { mutableStateOf(0) }
+    var rightNumber by rememberSaveable { mutableStateOf(0) }
+    var operation by rememberSaveable { mutableStateOf("") }
+    var complete by rememberSaveable { mutableStateOf(false) }
+
+    Column(
+        modifier = Modifier
+            .background(Color.LightGray)
+            .fillMaxSize()
+            .padding(10.dp),
+        //verticalArrangement = Arrangement.spacedBy(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        if (complete && operation != "") {
+            var answer = 0
+            when (operation) {
+                "+" -> answer = leftNumber + rightNumber
+                "-" -> answer = leftNumber - rightNumber
+                "*" -> answer = leftNumber * rightNumber
+                "/" -> if (rightNumber != 0) {
+                    answer = leftNumber / rightNumber
+                }
+            }
+            displayText.value = answer.toString()
+        } else if (operation != "" && !complete) {
+            displayText.value = rightNumber.toString()
+        } else {
+            displayText.value = leftNumber.toString()
+        }
+
+        fun numberPress(btnNum: Int) {
+            if (complete) {
+                leftNumber = 0
+                rightNumber = 0
+                operation = ""
+                complete = false
+            }
+
+            if (operation != "" && !complete) {
+                rightNumber = rightNumber * 10 + btnNum
+            } else if (operation == "" && !complete) {
+                leftNumber = leftNumber * 10 + btnNum
+            }
+        }
+
+        fun operationPress(op: String) {
+            if (!complete) {
+                operation = op
+            }
+        }
+
+        fun equalsPress() {
+            complete = true
+        }
 
         CalcDisplay(display = displayText)
 
