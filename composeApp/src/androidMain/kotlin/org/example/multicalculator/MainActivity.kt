@@ -58,12 +58,35 @@ fun CalcView() {
             displayText.value = leftNumber.toString()
         }
 
+        fun numberPress(btnNum: Int) {
+            if (complete) {
+                leftNumber = 0
+                rightNumber = 0
+                operation = ""
+                complete = false
+            }
 
+            if (operation != "" && !complete) {
+                rightNumber = rightNumber * 10 + btnNum
+            } else if (operation == "" && !complete) {
+                leftNumber = leftNumber * 10 + btnNum
+            }
+        }
+
+        fun operationPress(op: String) {
+            if (!complete) {
+                operation = op
+            }
+        }
+
+        fun equalsPress() {
+            complete = true
+        }
 
         CalcDisplay(display = displayText)
 
         Row(
-            modifier = Modifier.padding(top = 16.dp),
+            modifier = Modifier.padding(top = 20.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Column(
@@ -109,8 +132,9 @@ fun CalcDisplay(display: MutableState<String>) {
     Text(
         text = display.value,
         fontSize = 32.sp,
+
         modifier = Modifier
-            .height(50.dp)
+            .height(100.dp)
             .fillMaxWidth()
             .padding(5.dp)
     )
@@ -122,7 +146,7 @@ fun CalcNumericButton(number: Int, onPress: (number: Int) -> Unit) {
         onClick = { onPress(number) },
         modifier = Modifier
             .padding(0.dp)
-            .size(80.dp)
+            .size(85.dp)
     ) {
         Text(text = number.toString(), fontSize = 24.sp)
     }
@@ -134,7 +158,7 @@ fun CalcOperationButton(operation: String, onPress: (operation: String) -> Unit)
         onClick = { onPress(operation) },
         modifier = Modifier
             .padding(0.dp)
-            .size(80.dp)
+            .size(85.dp)
     ) {
         Text(text = operation, fontSize = 24.sp)
     }
@@ -146,7 +170,7 @@ fun CalcEqualsButton(onPress: () -> Unit) {
         onClick = { onPress() },
         modifier = Modifier
             .padding(0.dp)
-            .size(80.dp)
+            .size(85.dp)
     ) {
         Text(text = "=", fontSize = 24.sp)
     }
