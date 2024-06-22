@@ -201,7 +201,7 @@ fun evaluateExpression(expression: String): Int {
         "-" -> left - right
         "*" -> left * right
         "/" -> left / right
-        else -> throw IllegalArgumentException("Unidentified operator")
+        else -> throw IllegalArgumentException("Unidentified operator selection")
     }
 
 
