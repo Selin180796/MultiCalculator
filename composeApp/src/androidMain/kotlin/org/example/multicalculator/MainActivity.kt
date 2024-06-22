@@ -90,20 +90,20 @@ fun CalcView() {
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Column(
-                verticalArrangement = Arrangement.spacedBy(8.dp)
+                verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {
                 for (i in 7 downTo 1 step 3) {
                     CalcRow(onPress = { numberPress(it) }, startNum = i, numButtons = 3)
                 }
                 Row(
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    horizontalArrangement = Arrangement.spacedBy(10.dp)
                 ) {
                     CalcNumericButton(number = 0, onPress = { numberPress(it) })
                     CalcEqualsButton(onPress = { equalsPress() })
                 }
             }
             Column(
-                verticalArrangement = Arrangement.spacedBy(8.dp)
+                verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {
                 val operations = listOf("+", "-", "*", "/")
                 operations.forEach { op ->
